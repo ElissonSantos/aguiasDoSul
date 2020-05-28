@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "aguiasdosul-tvOS.app"
-               BlueprintName = "aguiasdosul-tvOS"
-               ReferencedContainer = "container:aguiasdosul.xcodeproj">
+               BuildableName = "aguiasDoSul-tvOS.app"
+               BlueprintName = "aguiasDoSul-tvOS"
+               ReferencedContainer = "container:aguiasDoSul.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "aguiasdosul-tvOSTests.xctest"
-               BlueprintName = "aguiasdosul-tvOSTests"
-               ReferencedContainer = "container:aguiasdosul.xcodeproj">
+               BuildableName = "aguiasDoSul-tvOSTests.xctest"
+               BlueprintName = "aguiasDoSul-tvOSTests"
+               ReferencedContainer = "container:aguiasDoSul.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "aguiasdosul-tvOS.app"
-            BlueprintName = "aguiasdosul-tvOS"
-            ReferencedContainer = "container:aguiasdosul.xcodeproj">
+            BuildableName = "aguiasDoSul-tvOS.app"
+            BlueprintName = "aguiasDoSul-tvOS"
+            ReferencedContainer = "container:aguiasDoSul.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "aguiasdosul-tvOS.app"
-            BlueprintName = "aguiasdosul-tvOS"
-            ReferencedContainer = "container:aguiasdosul.xcodeproj">
+            BuildableName = "aguiasDoSul-tvOS.app"
+            BlueprintName = "aguiasDoSul-tvOS"
+            ReferencedContainer = "container:aguiasDoSul.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

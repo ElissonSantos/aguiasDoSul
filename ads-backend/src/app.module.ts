@@ -1,9 +1,15 @@
 import { Module } from '@nestjs/common';
-import { DiaDeClubeModule } from './components/diaDeClube/diaDeClube.module';
+import { MongooseModule } from '@nestjs/mongoose';
+
 import { UnidadesModule } from './components/unidades/unidades.module';
 
 @Module({
-  imports: [DiaDeClubeModule, UnidadesModule],
+  imports: [
+    UnidadesModule,
+    MongooseModule.forRoot(
+      'mongodb+srv://elissonsantos:cjy3mssGWdJrPzul@elissonsantos-mphyr.gcp.mongodb.net/nestjs-demo?retryWrites=true&w=majority',
+    ),
+  ],
   controllers: [],
   providers: [],
 })
