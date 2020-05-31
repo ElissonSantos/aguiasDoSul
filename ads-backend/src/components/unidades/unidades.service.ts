@@ -15,18 +15,21 @@ export class UnidadesService {
 
     if (!unidade.id) {
       newUnidade = new this.unidadeModel({ name: unidade.name });
+      return await newUnidade.save();
     } else {
-      newUnidade = await this.getUnidades(unidade.id);
-      
-      newUnidade.name = unidade.name;
+      return await this.unidadeModel.findByIdAndUpdate(
+        unidade.id,
+        unidade,
+        { new: true },
+        (err, unit) => {
+          if (err) return err;
+          return unit;
+        },
+      );
     }
-
-    await newUnidade.save();
-
-    return;
   }
 
-  async delete(id: String) {
+  async delete(id) {
     const result = await this.unidadeModel.deleteOne({ _id: id }).exec();
     if (result.n === 0) {
       throw new NotFoundException('Erro ao excluir unidade');
@@ -36,13 +39,13 @@ export class UnidadesService {
 
   async getUnidades(id?: any) {
     if (id) {
-      let unidade = await this.unidadeModel.findById(id);
+      const unidade = await this.unidadeModel.findById(id);
       if (!unidade) {
         throw new NotFoundException('Nao foi possivel encontrar esta unidade.');
       }
       return { id: unidade.id, name: unidade.name };
     } else {
-      let unidades = await this.unidadeModel.find().exec();
+      const unidades = await this.unidadeModel.find().exec();
       return unidades.map(uni => ({
         id: uni.id,
         nome: uni.name,

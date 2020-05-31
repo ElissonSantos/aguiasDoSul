@@ -7,7 +7,7 @@ import { UnidadesModule } from './components/unidades/unidades.module';
   imports: [
     UnidadesModule,
     MongooseModule.forRoot(
-      'mongodb+srv://elissonsantos:cjy3mssGWdJrPzul@elissonsantos-mphyr.gcp.mongodb.net/nestjs-demo?retryWrites=true&w=majority',
+      'mongodb+srv://elissonsantos:0zGZyNSh782iWIW7@elissonsantos-mphyr.gcp.mongodb.net/aguias-do-sul?retryWrites=true&w=majority',
     ),
   ],
   controllers: [],

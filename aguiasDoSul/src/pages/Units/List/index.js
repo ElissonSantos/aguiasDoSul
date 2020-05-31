@@ -6,13 +6,15 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import api from '../../services/api';
+
+import api from '../../../services/api';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function Units({ navigation }) {
+export default function ListUnits({ navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [units, setUnits] = useState([]);
 
+  // Similar ao componentDidMount e componentDidUpdate:
   useEffect(() => {
     loadUnits();
   }, []);

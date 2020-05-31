@@ -8,6 +8,7 @@ import NewDesb from './pages/NewDesb';
 import Units from './pages/Units';
 import DayClub from './pages/DayClub';
 import MyArea from './pages/MyArea';
+import NewUnit from './pages/Units/NewUnit';
 
 export default function Routes() {
   return (
@@ -34,7 +35,16 @@ export default function Routes() {
       <Stack.Screen
         name="units"
         component={Units}
-        options={{ headerTitle: 'Unidades', headerTitleAlign: 'center' }}
+        options={{
+          headerTitle: 'Unidades',
+          headerTitleAlign: 'center',
+        }}
+      />
+
+      <Stack.Screen
+        name="editunit"
+        component={NewUnit}
+        options={{ headerShown: false }}
       />
 
       <Stack.Screen
