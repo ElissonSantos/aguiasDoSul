@@ -2,51 +2,57 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { Unidade } from '../../shared/models/desbravador.model';
+import QRCode from 'qrcode';
+
+import { Desbravador } from '../../shared/models/desbravador.model';
 
 @Injectable()
 export class DesbravadorService {
   constructor(
-    @InjectModel('Unidade') private readonly unidadeModel: Model<Unidade>,
+    @InjectModel('Desbravador')
+    private readonly desbravadorModel: Model<Desbravador>,
   ) {}
 
-  async save(unidade) {
-    let newUnidade;
-
-    if (!unidade.id) {
-      newUnidade = new this.unidadeModel({ name: unidade.name });
+  async save(desbravador) {
+    let newDesb;
+    if (!desbravador.id) {
+      newDesb = new this.desbravadorModel(desbravador);
+      const response = await newDesb.save();
+      return response;
     } else {
-      newUnidade = await this.getUnidades(unidade.id);
-
-      newUnidade.name = unidade.name;
+      return await this.desbravadorModel.findByIdAndUpdate(
+        desbravador.id,
+        desbravador,
+        { new: true },
+        (err, desb) => {
+          if (err) return err;
+          return desb;
+        },
+      );
     }
-
-    await newUnidade.save();
-
-    return;
   }
 
-  async delete(id: String) {
-    const result = await this.unidadeModel.deleteOne({ _id: id }).exec();
+  async delete(id) {
+    const result = await this.desbravadorModel.deleteOne({ _id: id }).exec();
     if (result.n === 0) {
-      throw new NotFoundException('Erro ao excluir unidade');
+      throw new NotFoundException('Erro ao excluir desbravador');
     }
     return;
   }
 
-  async getUnidades(id?: any) {
+  async getDesbravadores(id?: any) {
+    let desbravador;
     if (id) {
-      let unidade = await this.unidadeModel.findById(id);
-      if (!unidade) {
-        throw new NotFoundException('Nao foi possivel encontrar esta unidade.');
+      desbravador = await this.desbravadorModel.findById(id);
+      if (!desbravador) {
+        throw new NotFoundException(
+          'Nao foi possivel encontrar esta desbravador.',
+        );
       }
-      return { id: unidade.id, name: unidade.name };
+      return desbravador;
     } else {
-      let unidades = await this.unidadeModel.find().exec();
-      return unidades.map(uni => ({
-        id: uni.id,
-        nome: uni.name,
-      }));
+      desbravador = await this.desbravadorModel.find().exec();
+      return desbravador;
     }
   }
 }

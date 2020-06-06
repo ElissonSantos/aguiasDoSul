@@ -44,8 +44,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'aguiasDoSul' do
-  # Pods for aguiasDoSul
+target 'aguiasdosul' do
+  # Pods for aguiasdosul
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -77,7 +77,9 @@ target 'aguiasDoSul' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'aguiasDoSulTests' do
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+
+  target 'aguiasdosulTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -94,10 +96,10 @@ target 'aguiasDoSul' do
   end
 end
 
-target 'aguiasDoSul-tvOS' do
-  # Pods for aguiasDoSul-tvOS
+target 'aguiasdosul-tvOS' do
+  # Pods for aguiasdosul-tvOS
 
-  target 'aguiasDoSul-tvOSTests' do
+  target 'aguiasdosul-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

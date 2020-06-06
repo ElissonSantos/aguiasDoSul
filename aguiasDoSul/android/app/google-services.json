@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "303062517647",
+    "firebase_url": "https://aguiasdosul-2020.firebaseio.com",
+    "project_id": "aguiasdosul-2020",
+    "storage_bucket": "aguiasdosul-2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303062517647:android:d950a584ab8086d3ab6dfa",
+        "android_client_info": {
+          "package_name": "com.aguiasdosul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303062517647-uuqmn3tpv59qnsa44melba3ip54nph1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQgftI7Wk5i9wot-pOls5xcINFqjRcuGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303062517647-uuqmn3tpv59qnsa44melba3ip54nph1i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "303062517647-48gpf9td4omkrj8fbeh9ijk1il1a5u5q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.elisson.aguiasdosul"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
