@@ -2,16 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ec3237',
-    padding: 20,
-  },
-  title: {
-    color: '#fff',
-    fontSize: 30,
-    margin: 8,
+    position: 'relative',
   },
   textInput: {
     height: 40,
@@ -49,14 +40,14 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontWeight: 'bold',
   },
-  signin: {
+  signup: {
     flexDirection: 'row',
     marginTop: 100,
   },
-  signinText: {
+  signupText: {
     color: '#fff',
   },
-  signinText1: {
+  signupText1: {
     color: '#fff',
     fontWeight: 'bold',
     marginLeft: 8,

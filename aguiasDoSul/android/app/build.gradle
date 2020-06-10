@@ -79,9 +79,11 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
+    iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
 ]
 
 apply from: '../../node_modules/react-native/react.gradle'
+apply from: '../../node_modules/react-native-vector-icons/fonts.gradle'
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -193,9 +195,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.0.0'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.firebase:firebase-database:19.1.0'
-
-    //noinspection GradleDynamicVersion
-    implementation 'com.facebook.react:react-native:+'  // From node_modules
+    implementation 'com.google.firebase:firebase-functions:18.0.0'
 
     implementation 'com.android.support:multidex:1.0.3'
 

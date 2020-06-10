@@ -1,17 +1,56 @@
-// Main.js
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import firebase from 'react-native-firebase';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import styles from './styles';
+const Stack = createStackNavigator();
 
-export default class Main extends React.Component {
-  state = { currentUser: null };
-  render() {
-    const { currentUser } = this.state;
-    return (
-      <View style={styles.container}>
-        <Text>Hi {currentUser && currentUser.email}!</Text>
-      </View>
-    );
-  }
+// Pages
+import Home from './Home';
+import Units from './Units';
+import MyArea from './MyArea';
+import NewDesb from './NewDesb';
+import DayClub from './DayClub';
+
+export default function Main({ navigation }) {
+  const [currentUser, setCurrent] = useState('');
+
+  useEffect(() => {
+    const { currentUser } = firebase.auth();
+    setCurrent(currentUser);
+  }, []);
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+        initialParams={{ userLogado: currentUser }}
+      />
+
+      <Stack.Screen
+        name="NewDesb"
+        component={NewDesb}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="DayClub"
+        component={DayClub}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Units"
+        component={Units}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="MyArea"
+        component={MyArea}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
 }

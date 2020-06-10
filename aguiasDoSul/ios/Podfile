@@ -79,6 +79,8 @@ target 'aguiasdosul' do
 
   pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
 
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
   target 'aguiasdosulTests' do
     inherit! :complete
     # Pods for testing
