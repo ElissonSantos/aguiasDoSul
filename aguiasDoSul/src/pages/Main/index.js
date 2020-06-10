@@ -10,6 +10,8 @@ import Units from './Units';
 import MyArea from './MyArea';
 import NewDesb from './NewDesb';
 import DayClub from './DayClub';
+import NoVerify from './NoVerify';
+import Loading from './Loading';
 
 export default function Main({ navigation }) {
   const [currentUser, setCurrent] = useState('');
@@ -22,8 +24,21 @@ export default function Main({ navigation }) {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name="Loading"
+        component={Loading}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
         name="Home"
         component={Home}
+        options={{ headerShown: false }}
+        initialParams={{ userLogado: currentUser }}
+      />
+
+      <Stack.Screen
+        name="NoVerify"
+        component={NoVerify}
         options={{ headerShown: false }}
         initialParams={{ userLogado: currentUser }}
       />

@@ -15,9 +15,8 @@ import styles from './styles';
 
 export default function NewDesb({ route, navigation }) {
   const [isLoading, setLoading] = useState(false);
-  const { paramsDesb, idDesb } = route.params || {};
+  const { paramsDesb } = route.params || {};
   const [desbravador, setDesbravador] = useState(paramsDesb || {});
-  const [desbravadorId, setDesbravadorId] = useState(idDesb || {});
   const [units, setUnits] = useState([]);
 
   useEffect(() => {
@@ -46,60 +45,87 @@ export default function NewDesb({ route, navigation }) {
 
   async function save() {
     setLoading(true);
-    console.log(desbravador);
-    setLoading(false);
 
-    // if (desbravadorId) {
-    //   firebase
-    //     .database()
-    //     .ref(`Desbravadores/${desbravadorId}`)
-    //     .update(desbravador)
-    //     .then(() => {
-    //       ToastAndroid.show(
-    //         'Desbravador atualizado com sucesso.',
-    //         ToastAndroid.LONG,
-    //         ToastAndroid.TOP,
-    //         25,
-    //         50
-    //       );
-    //       navigation.push('Home');
-    //     })
-    //     .catch((error) => {
-    //       ToastAndroid.show(
-    //         'Ocorreu ao salvar o desbravador.',
-    //         ToastAndroid.LONG,
-    //         ToastAndroid.TOP,
-    //         25,
-    //         50
-    //       );
-    //       setLoading(false);
-    //     });
-    // } else {
-    //   firebase
-    //     .database()
-    //     .ref('Desbravadores/')
-    //     .push(desbravador)
-    //     .then(() => {
-    //       ToastAndroid.show(
-    //         'Desbravador salvo com sucesso.',
-    //         ToastAndroid.LONG,
-    //         ToastAndroid.TOP,
-    //         25,
-    //         50
-    //       );
-    //       navigation.push('Home');
-    //     })
-    //     .catch((error) => {
-    //       ToastAndroid.show(
-    //         'Ocorreu um erro ao salvar o desbravador.',
-    //         ToastAndroid.LONG,
-    //         ToastAndroid.TOP,
-    //         25,
-    //         50
-    //       );
-    //       setLoading(false);
-    //     });
-    // }
+    if (desbravador.id) {
+      firebase
+        .database()
+        .ref(`Desbravadores/${desbravador.id}`)
+        .update({
+          name: desbravador.name,
+          dt: desbravador.dt,
+          email: desbravador.email,
+          unit: desbravador.unit,
+          office: desbravador.office,
+          verify: true,
+        })
+        .then(() => {
+          ToastAndroid.show(
+            'Desbravador salvo com sucesso.',
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            50
+          );
+          navigation.push('Units');
+        })
+        .catch((error) => {
+          ToastAndroid.show(
+            'Ocorreu ao atualizar a desbravador.',
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            50
+          );
+          setLoading(false);
+        });
+    } else {
+      await firebase
+        .auth()
+        .createUserWithEmailAndPassword(desbravador.email, '123456')
+        .catch((error) => {
+          ToastAndroid.show(
+            'Ocorreu um erro ao salvar o desbravador.',
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            50
+          );
+          setLoading(false);
+          return;
+        });
+
+      await firebase
+        .database()
+        .ref('Desbravadores/')
+        .push({
+          name: desbravador.name,
+          dt: desbravador.dt,
+          email: desbravador.email,
+          unit: desbravador.unit,
+          office: desbravador.office,
+          verify: true,
+        })
+        .then(() => {
+          ToastAndroid.show(
+            'Desbravador salvo com sucesso.',
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            50
+          );
+          navigation.push('Home');
+        })
+        .catch((error) => {
+          ToastAndroid.show(
+            'Ocorreu um erro ao salvar o desbravador.',
+            ToastAndroid.LONG,
+            ToastAndroid.TOP,
+            25,
+            50
+          );
+          setLoading(false);
+        });
+    }
   }
 
   return (
@@ -159,11 +185,11 @@ export default function NewDesb({ route, navigation }) {
             })}
           </Picker>
           <Picker
-            selectedCargo={undefined}
+            selectedOffice={undefined}
             onValueChange={(itemValue, itemIndex) =>
               setDesbravador((prevState) => ({
                 ...prevState,
-                cargo: itemValue,
+                office: itemValue,
               }))
             }>
             <Picker.Item label="Cargo" value={undefined} />
@@ -175,7 +201,7 @@ export default function NewDesb({ route, navigation }) {
           </Picker>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.push('home')}>
+            onPress={() => navigation.push('Home')}>
             <Text style={styles.buttonText}>Cancelar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={save}>

@@ -7,10 +7,14 @@ const styles = StyleSheet.create({
   welcome: {
     flex: 1,
     alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
     height: 150,
     backgroundColor: '#ec3237',
+  },
+  welcomeOut: {
+    color: '#fff',
+    textAlign: 'right',
+    fontSize: 20,
+    margin: 4,
   },
   welcomeText: {
     color: '#fff',
@@ -20,7 +24,7 @@ const styles = StyleSheet.create({
   welcomeName: {
     color: '#fff',
     textAlign: 'center',
-    fontSize: 55,
+    fontSize: 35,
     margin: 10,
   },
   body: {

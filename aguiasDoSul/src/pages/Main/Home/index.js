@@ -27,7 +27,7 @@ export default function Home({ route, navigation }) {
 
     // try {
     //   const response = await instance();
-      console.log(instance);
+    console.log(instance);
     console.log('instance');
     console.log('response');
     //   console.log(response);
@@ -43,8 +43,11 @@ export default function Home({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.welcome}>
+        <View onTouchStart={() => firebase.auth().signOut()}>
+          <Text style={styles.welcomeOut}>Sair</Text>
+        </View>
         <Text style={styles.welcomeText}>Bem vindo,</Text>
-        <Text style={styles.welcomeName}>Elisson</Text>
+        <Text style={styles.welcomeName}>{userLogado.name}</Text>
       </View>
       <View style={styles.body}>
         <View style={styles.card}>

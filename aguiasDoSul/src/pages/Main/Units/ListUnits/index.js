@@ -45,10 +45,9 @@ export default function ListUnits({ navigation }) {
     loadUnits();
   }
 
-  function listDesb(id, name) {
+  function listDesb(unit) {
     navigation.navigate('ListDesb', {
-      unitId: { id },
-      title: name,
+      paramsUnit: unit,
     });
   }
 
@@ -77,7 +76,7 @@ export default function ListUnits({ navigation }) {
               <Text>{item.name}</Text>
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => listDesb(item.id, item.name)}>
+                onPress={() => listDesb(item)}>
                 <Text style={styles.buttonText}>Desbravadores</Text>
               </TouchableOpacity>
               <TouchableOpacity
