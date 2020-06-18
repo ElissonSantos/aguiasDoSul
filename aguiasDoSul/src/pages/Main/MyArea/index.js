@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
+import firebase from 'react-native-firebase';
 
 import styles from './styles';
-import QRCode from './QRcode';
+import QRPage from './QRPage';
 
 export default function MyArea() {
   return (
     <View style={styles.container}>
-      <Text>Minha Area</Text>
-      <QRCode />
+      <QRPage />
     </View>
   );
 }

@@ -12,6 +12,7 @@ import NewDesb from './NewDesb';
 import DayClub from './DayClub';
 import NoVerify from './NoVerify';
 import Loading from './Loading';
+import Pontualidade from './DayClub/Pontualidade';
 
 export default function Main({ navigation }) {
   const [currentUser, setCurrent] = useState('');
@@ -39,6 +40,13 @@ export default function Main({ navigation }) {
       <Stack.Screen
         name="NoVerify"
         component={NoVerify}
+        options={{ headerShown: false }}
+        initialParams={{ userLogado: currentUser }}
+      />
+
+      <Stack.Screen
+        name="Pontualidade"
+        component={Pontualidade}
         options={{ headerShown: false }}
         initialParams={{ userLogado: currentUser }}
       />
