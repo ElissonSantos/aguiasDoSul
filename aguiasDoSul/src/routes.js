@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from 'react-native-splash-screen';
 
 import { ContextUnits } from './store/ContextUnits';
+import { requestAllPermissions } from './services/App.service';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default function Routes() {
 
   useEffect(() => {
     SplashScreen.hide();
+    requestAllPermissions();
   }, []);
 
   return (
