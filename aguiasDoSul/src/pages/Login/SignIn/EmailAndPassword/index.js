@@ -7,12 +7,14 @@ import {
   TouchableOpacity,
   Alert,
   Keyboard,
+  ToastAndroid,
 } from 'react-native';
 import firebase from 'react-native-firebase';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './styles';
+import { forgotPassword, login } from '../../../../services/User.service';
 
 export default function EmailAndPassword(props) {
   const navigation = useNavigation();
@@ -35,14 +37,11 @@ export default function EmailAndPassword(props) {
   useEffect(() => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(email) === false) {
-      console.log('Email não está correto');
       setValid(false);
     } else {
       if (password && password.length >= 6) {
-        console.log('Email e Senha está correto');
         setValid(true);
       } else {
-        console.log('Email está correto');
         setValid(false);
       }
     }
@@ -57,16 +56,21 @@ export default function EmailAndPassword(props) {
   };
 
   function handleLogin() {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => navigation.navigate('Main'))
-      .catch((error) =>
-        Alert.alert(
-          'Erro ao realizar o Login.',
-          'Usuario e/ou senha incorreto.'
-        )
+    login(email, password);
+  }
+
+  function check() {
+    if (email) {
+      forgotPassword(email);
+    } else {
+      ToastAndroid.show(
+        'Favor informar o email para solicitar a alteração de senha.',
+        ToastAndroid.LONG,
+        ToastAndroid.TOP,
+        25,
+        50
       );
+    }
   }
 
   return (
@@ -116,7 +120,7 @@ export default function EmailAndPassword(props) {
         <Text style={styles.signupText1}>Cadastre-se</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.signup}>
+      <TouchableOpacity style={styles.signup} onPress={check}>
         <Text style={styles.signupText}>Esqueceu a senha?</Text>
         <Text style={styles.signupText1}>Alterar senha</Text>
       </TouchableOpacity>

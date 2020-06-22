@@ -11,9 +11,9 @@ export default function SignUp() {
       <Image source={background} style={styles.background} />
 
       <ScrollView contentContainerStyle={styles.form}>
-        <Text style={styles.tittle}>Novo Desbravador</Text>
+        <Text style={styles.title}>Novo Desbravador</Text>
         <FormSignUp />
-        <Text style={styles.tittleAguias}>ÁGUIAS DO SUL</Text>
+        <Text style={styles.titleAguias}>ÁGUIAS DO SUL</Text>
       </ScrollView>
     </View>
   );

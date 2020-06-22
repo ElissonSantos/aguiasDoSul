@@ -21,6 +21,7 @@ export default function SignUp() {
   const [user, setUser] = useState({ password: null });
   const [passwordOk, setPasswordOk] = useState();
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [validEmail, setValidEmail] = useState(false);
   const [valid, setValid] = useState(false);
   const [errorMessage, setMessage] = useState();
 
@@ -38,26 +39,35 @@ export default function SignUp() {
   useEffect(() => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(user.email) === false) {
-      setValid(false);
-      return;
-    }
-    if (passwordOk && user.password && user.password.length >= 6) {
-      setValid(true);
+      setValidEmail(false);
     } else {
-      setValid(false);
+      setValidEmail(true);
     }
-  }, [user.email, user.password, passwordOk]);
+  }, [user.email]);
 
   useEffect(() => {
-    if (user.dt && user.name && user.office && user.units) {
+    if (
+      user.dt &&
+      user.name &&
+      user.office &&
+      user.unit &&
+      validEmail &&
+      passwordOk
+    ) {
       setValid(true);
     } else {
       setValid(false);
     }
-  }, [user, valid]);
+  }, [user, valid, validEmail, passwordOk]);
 
   async function save() {
-    saveUser(user);
+    setLoading(true);
+    saveUser(user).then(() => {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'SignIn' }],
+      });
+    });
   }
 
   return (
@@ -163,14 +173,24 @@ export default function SignUp() {
         <Text style={styles.errorMessage}>Senhas diferentes</Text>
       )}
 
-      <PickerUnits
-        onChange={(itemValue) =>
-          setUser((prevState) => ({
-            ...prevState,
-            units: itemValue,
-          }))
-        }
-      />
+      <View style={styles.inputArea}>
+        <Icon
+          style={styles.icon}
+          name="account-group"
+          size={20}
+          color="#c0c0c0"
+        />
+
+        <PickerUnits
+          selectedValue={user.unit}
+          onValueChange={(text) =>
+            setUser((prevState) => ({
+              ...prevState,
+              unit: text,
+            }))
+          }
+        />
+      </View>
 
       <View style={styles.inputArea}>
         <Icon

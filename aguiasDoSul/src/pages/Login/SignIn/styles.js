@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 0,
   },
-  tittle: {
+  title: {
     color: '#fff',
     textAlign: 'center',
     marginTop: 30,

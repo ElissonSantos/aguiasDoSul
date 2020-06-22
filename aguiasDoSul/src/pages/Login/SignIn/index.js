@@ -19,7 +19,7 @@ export default function Login() {
         {/* Imagem de Background */}
         <Image source={background} style={styles.background} />
         {/* Imagem de Titlw */}
-        <Text style={styles.tittle}>ÁGUIAS DO SUL</Text>
+        <Text style={styles.title}>ÁGUIAS DO SUL</Text>
       </View>
 
       {

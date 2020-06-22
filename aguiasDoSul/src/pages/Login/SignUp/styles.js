@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 0,
   },
-  tittle: {
+  title: {
     color: '#fff',
     textAlign: 'center',
     margin: 30,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 4,
   },
-  tittleAguias: {
+  titleAguias: {
     color: '#fff',
     textAlign: 'center',
     margin: 30,

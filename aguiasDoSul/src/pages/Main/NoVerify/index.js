@@ -1,35 +1,43 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import firebase from 'react-native-firebase';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function NoVerify() {
+import { ContextUser } from '../../../store/ContextUser';
+import background from '../../../assets/background.png';
+import styles from './styles';
+
+export default function NoVerify({ navigation }) {
+  const { user } = useContext(ContextUser);
+
+  function signOut() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Login' }],
+        });
+      });
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Seu cadastro não foi validado ainda</Text>
-      <View onTouchStart={() => firebase.auth().signOut()}>
-        <Text style={styles.welcomeOut}>Sair</Text>
-      </View>
+      <Image source={background} style={styles.background} />
+
+      <Text style={styles.name}>Olá, {user.name}</Text>
+
+      <Text style={styles.text}>O Seu cadastro não foi validado ainda.</Text>
+
+      <Text style={styles.text}>
+        Aguarde a aprovação da Diretoria para poder acessar ao app.
+      </Text>
+
+      <TouchableOpacity style={styles.button} onPress={signOut}>
+        <Icon name="exit-to-app" size={20} color="#fff" />
+        <Text style={styles.buttonText}>SAIR</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ec3237',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  welcomeOut: {
-    color: '#fff',
-    textAlign: 'right',
-    fontSize: 20,
-    margin: 30,
-  },
-});

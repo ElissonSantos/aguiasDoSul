@@ -1,38 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, TouchableOpacity, ToastAndroid } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import firebase from 'react-native-firebase';
 import CameraRoll from '@react-native-community/cameraroll';
 import RNFS from 'react-native-fs';
 import QRCode from 'react-native-qrcode-svg';
 
 import styles from './styles';
+import { ContextUser } from '../../../../store/ContextUser';
 
-export default function QRPage() {
-  const [userData, setUserData] = useState({});
-  const [currentUser, setCurrent] = useState('');
+export default function QRPage(props) {
+  const { user } = useContext(ContextUser);
   const [svg, setSVG] = useState();
 
-  useEffect(() => {
-    const { currentUser } = firebase.auth();
-    setCurrent(currentUser);
-
-    firebase
-      .database()
-      .ref('Desbravadores')
-      .on('value', (snapshot) => {
-        const data = snapshot.val();
-        Object.keys(data).find((id) => {
-          let user = data[id];
-          if (user.email === currentUser.email) {
-            user = {
-              ...user,
-              id,
-            };
-            setUserData(user);
-          }
-        });
-      });
-  }, []);
+  console.log(user);
 
   function saveQrToDisk() {
     svg.toDataURL((data) => {
@@ -51,15 +32,23 @@ export default function QRPage() {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={saveQrToDisk}>
-        <Text style={styles.buttonText}>Salvar na Galeria</Text>
+      <TouchableOpacity style={styles.buttonExit} onPress={props.hide}>
+        <Icon name="close" size={30} color="#ec3237" />
       </TouchableOpacity>
 
-      <QRCode
-        size={300}
-        value={JSON.stringify(userData)}
-        getRef={(c) => setSVG(c)}
-      />
+      <View style={styles.card}>
+        <QRCode
+          size={310}
+          value={JSON.stringify(user)}
+          getRef={(c) => setSVG(c)}
+        />
+
+        <View style={styles.buttons}>
+          <TouchableOpacity style={styles.button} onPress={saveQrToDisk}>
+            <Text style={styles.buttonText}>SALVAR QRCODE</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 }

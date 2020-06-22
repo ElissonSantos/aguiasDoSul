@@ -1,40 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, Image } from 'react-native';
 import firebase from 'react-native-firebase';
 
-import Approve from './Approve';
-import Iniciar from './Iniciar';
+import Menu from './Menu';
 
-// import usersToApprove from '../../../services/User.service';
+import styles from './styles';
+import background from '../../../assets/background.png';
+import { ContextUser } from '../../../store/ContextUser';
 
-export default function Home({ route }) {
-  const { userLogado } = route.params;
-  // const [userToApprove, setUserToApprove] = useState(false);
-  const [users, setUsers] = useState();
-  const [user, setUser] = useState(userLogado);
+export default function Home({ navigation }) {
+  const { user } = useContext(ContextUser);
 
-  useEffect(() => {
-    userApprove();
-  }, []);
-
-  async function userApprove() {
-    console.log('Comecou a funcao no home');
-    // const usuario = await usersToApprove();
-    console.log('Executou a funcao;');
-    // console.log(usuario);
+  function logout() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Login' }],
+        });
+      });
   }
-
   return (
     <View style={styles.container}>
-      <Iniciar user={user} />
-      {/* {userToApprove ? <Approve users={users} /> : <Iniciar user={user} />} */}
+      <View onTouchStart={logout} style={styles.viewOut}>
+        <Text style={styles.out}>Sair</Text>
+      </View>
+
+      <View style={styles.viewTop}>
+        <Image source={background} style={styles.background} />
+
+        <Text style={styles.welcomeText}>Bem vindo,</Text>
+        <Text style={styles.welcomeName}>{user.name}</Text>
+      </View>
+
+      <View style={styles.viewDown}>
+        <Menu />
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: '100%',
-  },
-});
