@@ -22,8 +22,7 @@ export default function Login() {
         <Text style={styles.title}>ÁGUIAS DO SUL</Text>
       </View>
 
-      {
-        /* Logo */
+      {/* Logo 
         min ? (
           <View style={styles.viewLogoMin}>
             <Image source={logo} style={styles.logoMin} />
@@ -33,7 +32,7 @@ export default function Login() {
             <Image source={logo} style={styles.logo} />
           </View>
         )
-      }
+        */}
 
       <View style={styles.viewDown}>
         <EmailAndPassword
