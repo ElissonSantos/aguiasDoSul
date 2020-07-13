@@ -136,8 +136,8 @@ const haveVerify = async (usersData, user) => {
   return have;
 };
 
-export const login = (email, password) => {
-  firebase
+export const login = async (email, password) => {
+  await firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .catch((error) =>

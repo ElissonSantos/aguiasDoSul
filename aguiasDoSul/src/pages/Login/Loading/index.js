@@ -1,16 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useState } from 'react';
-import { View, ActivityIndicator, ToastAndroid } from 'react-native';
+import { View, ActivityIndicator, ToastAndroid, Image } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import firebase from 'react-native-firebase';
 
 import { ContextUnits } from '../../../store/ContextUnits';
 import { getUnits } from '../../../services/Units.service';
+import background from '../../../assets/background.png';
 
 import styles from './styles';
 
 export default function Loading({ navigation }) {
   const [unitsDb, setUnitsDb] = useState();
-  const { units, setUnits } = useContext(ContextUnits);
+  const { setUnits } = useContext(ContextUnits);
 
   useEffect(() => {
     firebase
@@ -47,7 +49,8 @@ export default function Loading({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator color="white" size={50} />
+      <Image source={background} style={styles.background} />
+      <ActivityIndicator color="white" size={wp('15%')} />
     </View>
   );
 }

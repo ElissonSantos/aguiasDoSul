@@ -5,34 +5,22 @@ import {
   TextInput,
   View,
   TouchableOpacity,
-  Alert,
   Keyboard,
   ToastAndroid,
+  ActivityIndicator,
 } from 'react-native';
-import firebase from 'react-native-firebase';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './styles';
 import { forgotPassword, login } from '../../../../services/User.service';
 
-export default function EmailAndPassword(props) {
+export default function EmailAndPassword() {
   const navigation = useNavigation();
+  const [isLoading, setLoading] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [valid, setValid] = useState(false);
-  const [errorMessage, setMessage] = useState();
-
-  useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-    Keyboard.addListener('keyboardDidHide', keyboardDidHide);
-
-    // cleanup function
-    return () => {
-      Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
-      Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
-    };
-  }, []);
 
   useEffect(() => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -47,16 +35,10 @@ export default function EmailAndPassword(props) {
     }
   }, [email, password]);
 
-  const keyboardDidShow = () => {
-    props.onChangeMin();
-  };
-
-  const keyboardDidHide = () => {
-    props.onChangeMax();
-  };
-
-  function handleLogin() {
-    login(email, password);
+  async function handleLogin() {
+    setLoading(true);
+    await login(email, password);
+    setLoading(false);
   }
 
   function check() {
@@ -75,20 +57,17 @@ export default function EmailAndPassword(props) {
 
   return (
     <View style={styles.container}>
-      {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}
-
       <View style={styles.inputArea}>
         <Icon style={styles.icon} name="email" size={20} color="#c0c0c0" />
         <TextInput
           autoCompleteType="email"
-          onSubmitEditing={Keyboard.dismiss}
           keyboardType="email-address"
           style={styles.textInput}
           autoCapitalize="none"
           placeholder="Email"
           textAlignVertical="center"
           placeholderTextColor="#c0c0c0"
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={(emailInput) => setEmail(emailInput)}
           value={email}
         />
       </View>
@@ -101,7 +80,7 @@ export default function EmailAndPassword(props) {
           placeholderTextColor="#c0c0c0"
           autoCapitalize="none"
           placeholder="Password"
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(passwordInput) => setPassword(passwordInput)}
           value={password}
         />
       </View>
@@ -109,8 +88,12 @@ export default function EmailAndPassword(props) {
       <TouchableOpacity
         style={styles.button}
         onPress={handleLogin}
-        disabled={!valid}>
-        <Text style={styles.buttonText}>ENTRAR</Text>
+        disabled={!valid && isLoading}>
+        {isLoading ? (
+          <ActivityIndicator color="white" />
+        ) : (
+          <Text style={styles.buttonText}>ENTRAR</Text>
+        )}
       </TouchableOpacity>
 
       <TouchableOpacity

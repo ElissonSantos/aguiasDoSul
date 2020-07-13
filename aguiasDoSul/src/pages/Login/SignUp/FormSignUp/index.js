@@ -220,7 +220,7 @@ export default function SignUp() {
       <TouchableOpacity
         style={styles.button}
         onPress={save}
-        disabled={!valid || isLoading}>
+        disabled={!valid && isLoading}>
         {isLoading ? (
           <ActivityIndicator color="#fff" size={30} />
         ) : (

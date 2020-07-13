@@ -1,35 +1,43 @@
 import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
-  },
-  form: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'space-between',
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#CA0B0B',
   },
   background: {
     width: '100%',
     height: '100%',
-    position: 'absolute',
-    zIndex: 0,
+    resizeMode: 'cover',
+    justifyContent: 'space-between',
   },
   title: {
     color: '#fff',
     textAlign: 'center',
-    margin: 30,
-    fontSize: 20,
-    fontWeight: 'bold',
+    marginTop: wp('8%'),
+    marginBottom: wp('8%'),
+    fontSize: wp('5%'),
     letterSpacing: 4,
+    fontWeight: 'bold',
   },
   titleAguias: {
     color: '#fff',
     textAlign: 'center',
-    margin: 30,
-    fontSize: 18,
+    marginTop: wp('4%'),
+    marginBottom: wp('4%'),
+    fontSize: wp('5%'),
     letterSpacing: 7,
+  },
+  form: {
+    // width: '100%',
+    // height: '100%',
+    // justifyContent: 'space-between',
   },
 });
 

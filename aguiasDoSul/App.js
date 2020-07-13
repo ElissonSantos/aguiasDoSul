@@ -17,7 +17,7 @@ GoogleSignin.configure();
 const App = () => {
   return (
     <NavigationContainer>
-      <StatusBar barStyle="light-content" backgroundColor="#f82110" />
+      <StatusBar barStyle="light-content" backgroundColor="#CA0B0B" />
       <Routes />
     </NavigationContainer>
   );

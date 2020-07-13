@@ -1,43 +1,47 @@
 import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    bottom: 45,
+    top: wp('32%'),
   },
   inputArea: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    width: '74%',
-    height: 40,
-    marginBottom: 15,
+    width: wp('75%'),
+    height: hp('6%'),
+    marginBottom: hp('2%'),
     borderColor: '#e6aaa9',
-    borderWidth: 2,
+    borderWidth: 3,
     borderRadius: 5,
   },
   icon: {
-    padding: 7,
+    padding: hp('1%'),
   },
   textInput: {
     flex: 1,
-    paddingTop: 5,
-    paddingRight: 5,
-    paddingBottom: 5,
+    paddingTop: hp('1%'),
+    paddingRight: hp('1%'),
+    paddingBottom: hp('1%'),
     paddingLeft: 0,
     backgroundColor: '#fff',
     color: '#424242',
   },
   button: {
-    height: 40,
+    height: hp('6%'),
     flexDirection: 'row',
     alignSelf: 'stretch',
     backgroundColor: '#fe4e4b',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: hp('2%'),
     borderRadius: 5,
   },
   buttonText: {
@@ -47,14 +51,14 @@ const styles = StyleSheet.create({
   },
   signup: {
     flexDirection: 'row',
-    marginBottom: 5,
+    marginBottom: hp('1%'),
   },
   signupText: {
     color: '#8d8c8c',
   },
   signupText1: {
     color: '#fb7e7a',
-    marginLeft: 8,
+    marginLeft: hp('1%'),
     textDecorationColor: '#fb7e7a',
     textDecorationLine: 'underline',
   },

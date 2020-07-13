@@ -1,9 +1,13 @@
 import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: hp('7%'),
+    paddingRight: hp('7%'),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -13,32 +17,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     width: '100%',
-    marginBottom: 15,
+    marginBottom: wp('5%'),
     borderColor: '#e6aaa9',
     borderWidth: 2,
     borderRadius: 5,
   },
   icon: {
-    padding: 5,
+    padding: wp('2%'),
   },
   textInput: {
     flex: 1,
     width: '100%',
-    height: 50,
-    paddingTop: 5,
-    marginRight: 5,
-    paddingBottom: 5,
-    marginLeft: 5,
+    height: wp('10%'),
+    paddingTop: wp('2%'),
+    marginRight: wp('2%'),
+    paddingBottom: wp('2%'),
+    marginLeft: wp('2%'),
     backgroundColor: '#fff',
     color: '#424242',
   },
   errorMessage: {
     color: '#fff',
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: wp('2%'),
   },
   button: {
-    height: 40,
+    height: wp('10%'),
     flexDirection: 'row',
     alignSelf: 'stretch',
     backgroundColor: '#fe4e4b',
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: wp('4%'),
     borderRadius: 5,
   },
   buttonText: {
@@ -57,14 +61,14 @@ const styles = StyleSheet.create({
   },
   signin: {
     flexDirection: 'row',
-    marginBottom: 5,
+    marginBottom: wp('2%'),
   },
   signinText: {
     color: '#ffd9da',
   },
   signinText1: {
     color: '#fff',
-    marginLeft: 8,
+    marginLeft: wp('3%'),
     textDecorationColor: '#ffcdc3',
     textDecorationLine: 'underline',
   },
