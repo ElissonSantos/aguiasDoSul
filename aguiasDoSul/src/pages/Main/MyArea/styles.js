@@ -1,27 +1,31 @@
 import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
   },
   viewTop: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: wp('100%'),
+    height: hp('15%'),
   },
   viewDown: {
-    flex: 8,
+    width: wp('100%'),
+    height: hp('85%'),
     backgroundColor: '#fff',
   },
   background: {
-    height: '100%',
-    position: 'absolute',
-    zIndex: 0,
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
   title: {
     color: '#fff',
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: wp('7%'),
   },
   card: {
     width: '100%',
@@ -29,22 +33,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    zIndex: 20,
+    zIndex: 2,
   },
   form: {
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  buttonArea: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: wp('7%'),
+  },
   button: {
-    height: 40,
+    height: wp('9%'),
     backgroundColor: '#fe4e4b',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginBottom: 15,
-    borderRadius: 5,
+    paddingLeft: wp('3%'),
+    paddingRight: wp('3%'),
+    marginBottom: wp('4%'),
+    borderRadius: wp('2%'),
   },
   buttonText: {
     color: '#ffffff',

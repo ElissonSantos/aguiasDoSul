@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  ImageBackground,
+} from 'react-native';
 
 import background from '../../../assets/background.png';
 
@@ -9,15 +16,15 @@ import EditDesb from './EditDesb';
 import ChangePassword from './ChangePassword';
 
 export default function MyArea() {
-  const [changeP, setChangeP] = useState(false);
+  const [changeP, setChangeP] = useState(true);
   const [show, setShow] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.viewTop}>
-        <Image source={background} style={styles.background} />
-
-        <Text style={styles.title}>MINHA ÁREA</Text>
+        <ImageBackground source={background} style={styles.background}>
+          <Text style={styles.title}>MINHA ÁREA</Text>
+        </ImageBackground>
       </View>
 
       <View style={styles.viewDown}>
@@ -32,14 +39,15 @@ export default function MyArea() {
             <QRPage hide={() => setShow(false)} />
           </View>
         )}
-        <View style={styles.form}>
-          <EditDesb setChangeP={() => setChangeP(true)} />
 
+        <EditDesb setChangeP={() => setChangeP(true)} />
+
+        <View style={styles.buttonArea}>
           <TouchableOpacity style={styles.button} onPress={() => setShow(true)}>
             <Text style={styles.buttonText}>VER QRCODE</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }

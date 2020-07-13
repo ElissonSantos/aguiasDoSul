@@ -1,28 +1,35 @@
 import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
+    backgroundColor: '#CA0B0B',
   },
   viewTop: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: hp('30%'),
+    width: wp('100%'),
+    backgroundColor: '#CA0B0B',
   },
   viewDown: {
-    flex: 2,
+    height: hp('70%'),
+    width: wp('100%'),
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
   },
   background: {
-    height: '100%',
-    position: 'absolute',
-    zIndex: 0,
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'flex-end',
   },
   viewOut: {
     width: '100%',
-    padding: 10,
+    paddingTop: wp('2%'),
+    paddingRight: wp('4%'),
     justifyContent: 'flex-end',
     position: 'absolute',
     zIndex: 1,
@@ -30,19 +37,19 @@ const styles = StyleSheet.create({
   out: {
     color: '#fff',
     textAlign: 'right',
-    fontSize: 20,
-    margin: 4,
+    fontSize: wp('5%'),
   },
   welcomeText: {
     color: '#fff',
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: wp('7%'),
   },
   welcomeName: {
     color: '#fff',
     textAlign: 'center',
-    fontSize: 35,
-    margin: 10,
+    fontSize: wp('9%'),
+    marginTop: wp('3%'),
+    marginBottom: wp('10%'),
   },
 });
 

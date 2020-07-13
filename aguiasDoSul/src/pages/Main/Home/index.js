@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ScrollView, ImageBackground } from 'react-native';
 import firebase from 'react-native-firebase';
 
 import Menu from './Menu';
@@ -23,21 +23,21 @@ export default function Home({ navigation }) {
       });
   }
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View onTouchStart={logout} style={styles.viewOut}>
         <Text style={styles.out}>Sair</Text>
       </View>
 
       <View style={styles.viewTop}>
-        <Image source={background} style={styles.background} />
-
-        <Text style={styles.welcomeText}>Bem vindo,</Text>
-        <Text style={styles.welcomeName}>{user.name}</Text>
+        <ImageBackground source={background} style={styles.background}>
+          <Text style={styles.welcomeText}>Bem vindo,</Text>
+          <Text style={styles.welcomeName}>{user.name}</Text>
+        </ImageBackground>
       </View>
 
       <View style={styles.viewDown}>
         <Menu />
       </View>
-    </View>
+    </ScrollView>
   );
 }
